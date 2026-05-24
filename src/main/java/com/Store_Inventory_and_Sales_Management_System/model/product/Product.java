@@ -18,8 +18,29 @@ public abstract class Product {
         return price + (price * VAT_RATE);
     }
 
-    public void reduceStockQuantity(){this.stockQuantity--;}
+    public void reduceStockQuantity(){
+        if(!isOutofStock())
+            this.stockQuantity--;
+    }
+
+    public void setPrice(double price){
+        if(price >= 0) 
+            this.price = price;
+    }
+    public void setStockQuantity(int stockQuantity){
+        if(stockQuantity >= 0) 
+            this.stockQuantity = stockQuantity;
+    }
+
+    public boolean isOutofStock(){return stockQuantity == 0;}
     public double getPrice(){return price;}
     public String getBrandName(){return brandName;}
     public int getStockQuantity(){return stockQuantity;}
+    public String getProductCategory(){return productCategory;}
+
+    @Override
+    public String toString() {
+        return String.format("Brand: %s | Category: %s | Price: %.2f | Stock: %d",
+            brandName, productCategory, price, stockQuantity);
+    }
 }

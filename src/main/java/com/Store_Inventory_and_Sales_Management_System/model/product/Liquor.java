@@ -12,8 +12,8 @@ public class Liquor extends Product{
 
     @Override
     public double calculateTotalPrice(){
-        double priceWithValorem = price*AD_VALOREM;
-        return price+priceWithValorem+PROOF_LITTER;
+        double exciseTax = (price * AD_VALOREM) + PROOF_LITTER;
+        return price + exciseTax + (price * VAT_RATE); 
     }
 
     public int getVolume(){return volumeMl;}
